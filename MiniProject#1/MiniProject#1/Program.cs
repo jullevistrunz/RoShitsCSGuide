@@ -7,44 +7,35 @@ using System.Threading.Tasks;
 namespace MiniProject_1 {
     internal class Program {
         static void Main() {
-            
-            while(true) {
+
+            string operationInput = "";
+            while (operationInput != "6") {
                 Console.WriteLine("Menu: \n1. Addition \n2. Subtraction \n3. Multiplication\n4. Division\n5. Power\n6. Exit");
                 Console.Write("Please select an operation (1-6): ");
-                string operationInput = Console.ReadLine();
+                operationInput = Console.ReadLine();
                 
                 if (operationInput == "6") {
                     Console.WriteLine("Goodbye!");
-                    break;
+                    continue;
                 }
 
-                List<string> numberInputs = new List<string>();
+                Console.WriteLine("Please enter your numbers using spaces to seperate.");
 
-                Console.WriteLine("Please enter your numbers. Enter nothing to start calculating: ");
+                string numberInput = Console.ReadLine();
 
-                int numberInputIndex = 1;
-
-                while (true) {
-                    Console.Write($"Please enter your {numberInputIndex}. number: ");
-                    string numberInput = Console.ReadLine();
-                    if (numberInput == "") {
-                        break;
-                    }
-                    numberInputs.Add(numberInput);
-                    numberInputIndex++;
-                }
+                string[] numberInputs = numberInput.Split(' ');
 
                 int operation;
-                float[] numbers = new float[numberInputs.Count];
+                float[] numbers = new float[numberInputs.Length];
 
-                if (numberInputs.Count < 2) {
+                if (numberInputs.Length < 2) {
                     Console.WriteLine("Please enter at least 2 numbers!\n");
                     continue;
                 }
 
                 try {
                     operation = int.Parse(operationInput);
-                    for (int i = 0; i < numberInputs.Count; i++) {
+                    for (int i = 0; i < numberInputs.Length; i++) {
                         numbers[i] = float.Parse(numberInputs[i]);
                     }
                 } catch {
